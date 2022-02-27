@@ -62,7 +62,7 @@ read -r -d '' SERVER_INIT_CLOUDINIT_TEMPLATE << EOM
 #cloud-config
 
 runcmd:
- - '\curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=$CHANNEL K3S_TOKEN=$SERVER_TOKEN K3S_AGENT_TOKEN=$AGENT_TOKEN INSTALL_K3S_EXEC="server --cluster-init" K3S_KUBECONFIG_MODE=644 sh -'
+ - 'curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=$CHANNEL K3S_TOKEN=$SERVER_TOKEN K3S_AGENT_TOKEN=$AGENT_TOKEN INSTALL_K3S_EXEC="server --cluster-init" K3S_KUBECONFIG_MODE=644 sh -'
 EOM
 
 echo "$SERVER_INIT_CLOUDINIT_TEMPLATE" > "${NAME}-init-cloud-init.yaml"
@@ -91,7 +91,7 @@ if [ "${SERVER_COUNT_MACHINE}" -gt 0 ]; then
 #cloud-config
 
 runcmd:
- - '\curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=$CHANNEL K3S_TOKEN=$SERVER_TOKEN K3S_AGENT_TOKEN=$AGENT_TOKEN INSTALL_K3S_EXEC="server --server $URL" K3S_KUBECONFIG_MODE=644 sh -'
+ - 'curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=$CHANNEL K3S_TOKEN=$SERVER_TOKEN K3S_AGENT_TOKEN=$AGENT_TOKEN INSTALL_K3S_EXEC="server --server $URL" K3S_KUBECONFIG_MODE=644 sh -'
 EOM
 
     echo "$SERVER_CLOUDINIT_TEMPLATE" > "${NAME}-cloud-init.yaml"
@@ -118,7 +118,7 @@ if [ "${AGENT_COUNT_MACHINE}" -gt 0 ]; then
 #cloud-config
 
 runcmd:
- - '\curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=$CHANNEL K3S_TOKEN=$AGENT_TOKEN K3S_URL=$URL sh -'
+ - 'curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=$CHANNEL K3S_TOKEN=$AGENT_TOKEN K3S_URL=$URL sh -'
 EOM
 
     echo "$AGENT_CLOUDINIT_TEMPLATE" > "${NAME}-agent-cloud-init.yaml"
